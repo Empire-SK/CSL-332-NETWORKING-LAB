@@ -1,0 +1,464 @@
+1) Ifconfig : is  used to configure the kernel-resident network interfaces.
+          It is used at boot time to set up interfaces as necessary.  After that,
+          it is usually only needed when  debugging  or  when  system  tuning  is
+          needed.
+          
+2) Netstat : prints  information about the Linux networking subsystem.  The
+       type of information printed is controlled by  the  first  argument,  as
+       follows:
+
+   (none)
+       By  default,  netstat  displays  a  list of open sockets.  If you don't
+       specify any address families, then the active sockets of all configured
+       address families will be printed.
+
+   --route, -r
+       Display the kernel routing tables. See the description in route(8)  for
+       details.  netstat -r and route -e produce the same output.
+
+   --groups, -g
+       Display multicast group membership information for IPv4 and IPv6.
+   
+   --interfaces, -i
+       Display a table of all network interfaces.
+
+   --masquerade, -M
+       Display a list of masqueraded connections.
+
+   --statistics, -s
+       Display summary statistics for each protocol.
+       
+    
+3) ping : uses the ICMP protocol's mandatory ECHO_REQUEST datagram to elicit
+       an ICMP ECHO_RESPONSE from a host or gateway. ECHO_REQUEST datagrams
+       (“pings”) have an IP and ICMP header, followed by a struct timeval and
+       then an arbitrary number of “pad” bytes used to fill out the packet.
+
+       ping works with both IPv4 and IPv6. Using only one of them explicitly
+       can be enforced by specifying -4 or -6.
+
+       ping can also send IPv6 Node Information Queries (RFC4620).
+       Intermediate hops may not be allowed, because IPv6 source routing was
+       deprecated (RFC5095).
+
+
+4) Arp : manipulates or displays the kernel's IPv4 network neighbour cache.
+       It can add entries to the table, delete one or display the current con‐
+       tent.
+
+       ARP stands for Address Resolution Protocol, which is used to  find  the
+       media  access  control  address of a network neighbour for a given IPv4
+       Address.
+       
+       
+5) telnet : The  telnet  command is used to communicate with another host using the
+       TELNET protocol.  If telnet is invoked without the  host  argument,  it
+       enters  command mode, indicated by its prompt (telnet>).  In this mode,
+       it accepts and executes the commands listed below.  If  it  is  invoked
+       with arguments, it performs an open command with those arguments.
+       
+6) tnftp : is the user interface to the Internet standard File Transfer Pro‐
+       tocol.  The program allows a user to transfer files to and from  a  re‐
+       mote network site.
+
+       The  last five arguments will fetch a file using the FTP or HTTP proto‐
+       cols, or by direct copying, into the current directory.  This is  ideal
+       for  scripts.   Refer  to “AUTO-FETCHING FILES” below for more informa‐
+       tion.
+
+       Options may be specified at the command line, or to the command  inter‐
+       preter.
+
+       -4          Forces tnftp to only use IPv4 addresses.
+
+       -6          Forces tnftp to only use IPv6 addresses.
+
+       -A          Force  active  mode FTP.  By default, tnftp will try to use
+                   passive mode FTP and fall back to active mode if passive is
+                   not supported by the server.  This option causes  tnftp  to
+                   always  use  an  active  connection.  It is only useful for
+                   connecting to very old servers that do not  implement  pas‐
+                   sive mode properly.
+
+       -a          Causes  tnftp  to bypass normal login procedure, and use an
+                   anonymous login instead.
+
+       -d          Enables debugging.
+
+       -e          Disables command line editing.  This is  useful  for  Emacs
+                   ange-ftp mode.
+
+       -f          Forces a cache reload for transfers that go through the FTP
+                   or HTTP proxies.
+
+       -g          Disables file name globbing.
+
+       -i          Turns off interactive prompting during multiple file trans‐
+                   fers.
+
+       -N netrc    Use  netrc instead of ~/.netrc.  Refer to “THE .netrc FILE”
+                   or more information.
+
+       -n          Restrains tnftp from attempting “auto-login”  upon  initial
+                   connection  for non auto-fetch transfers.  If auto-login is
+                   enabled, tnftp will check the .netrc (see  below)  file  in
+                   the  user's  home  directory for an entry describing an ac‐
+                   count on the remote machine.  If  no  entry  exists,  tnftp
+                   will  prompt  for the remote machine login name (default is
+                   the user identity on the local machine), and, if necessary,
+                   prompt for a password and an account with which  to  login.
+                   To  override the auto-login for auto-fetch transfers, spec‐
+                   ify the username (and optionally, password) as appropriate.
+
+       -o output   When auto-fetching files,  save  the  contents  in  output.
+                   output is parsed according to the “FILE NAMING CONVENTIONS”
+                   below.   If  output  is  not ‘-’ or doesn't start with ‘|’,
+                   then only the first file specified will be  retrieved  into
+                   output; all other files will be retrieved into the basename
+                   of their remote name.
+
+       -P port     Sets the port number to port.
+
+
+       -p          Enable  passive  mode  operation  for use behind connection
+                   filtering firewalls.  This option has  been  deprecated  as
+                   tnftp  now  tries  to  use passive mode by default, falling
+                   back to active mode if the server does not support  passive
+                   connections.
+
+       -q quittime
+                   Quit if the connection has stalled for quittime seconds.
+
+       -R          Restart all non-proxied auto-fetches.
+
+       -r wait     Retry the connection attempt if it failed, pausing for wait
+                   seconds.
+
+       -s srcaddr  Uses srcaddr as the local IP address for all connections.
+
+       -t          Enables packet tracing.
+
+       -T direction,maximum[,increment]
+                   Set  the  maximum  transfer  rate  for direction to maximum
+                   bytes/second, and if specified, the increment to  increment
+                   bytes/second.  Refer to rate for more information.
+        -u url file ...
+                   Upload files on the command line to url where url is one of
+                   the  ‘ftp://’ URL types as supported by auto-fetch (with an
+                   optional target filename for single file uploads), and file
+                   is one or more local files to be uploaded.
+
+       -V          Disable verbose and progress, overriding the default of en‐
+                   abled when output is to a terminal.
+
+       -v          Enable verbose and progress.  This is the default if output
+                   is to a terminal (and in the case of progress, tnftp is the
+                   foreground process).  Forces tnftp to  show  all  responses
+                   from  the remote server, as well as report on data transfer
+                   statistics.
+
+       -x xfersize
+                   Set the size of the socket  send  and  receive  buffers  to
+                   xfersize.  Refer to xferbuf for more information.
+
+       -?          Display help to stdout, and exit.
+       
+       The  client host with which tnftp is to communicate may be specified on
+       the command line.  If this is done, tnftp will immediately  attempt  to
+       establish  a connection to an FTP server on that host; otherwise, tnftp
+       will enter its command interpreter  and  await  instructions  from  the
+       user.   When tnftp is awaiting commands from the user the prompt ‘ftp>’
+       is provided to the user.  The  following  commands  are  recognized  by
+       tnftp:
+
+       ! [command [args]]
+                   Invoke an interactive shell on the local machine.  If there
+                   are  arguments,  the first is taken to be a command to exe‐
+                   cute directly, with the rest of the arguments as its  argu‐
+                   ments.
+
+       $ macro-name [args]
+                   Execute  the  macro  macro-name  that  was defined with the
+                   macdef command.  Arguments are  passed  to  the  macro  un‐
+                   globbed.
+
+       account [passwd]
+                   Supply  a supplemental password required by a remote system
+                   for access to resources once a login has been  successfully
+                   completed.   If  no  argument is included, the user will be
+                   prompted for an account password  in  a  non-echoing  input
+                   mode.
+
+       append local-file [remote-file]
+                   Append  a  local  file to a file on the remote machine.  If
+                   remote-file is left unspecified, the  local  file  name  is
+                   used  in  naming the remote file after being altered by any
+                   ntrans or nmap setting.  File  transfer  uses  the  current
+                   settings for type, format, mode, and structure.
+
+       ascii       Set  the  file transfer type to network ASCII.  This is the
+                   default type.
+
+       bell        Arrange that a bell be sounded  after  each  file  transfer
+                   command is completed.
+
+       binary      Set  the  file transfer type to support binary image trans‐
+                   fer.
+
+       bye         Terminate the FTP session with the remote server  and  exit
+                   tnftp.   An end of file will also terminate the session and
+                   exit.
+
+       case        Toggle remote computer file name case mapping  during  get,
+                   mget  and mput commands.  When case is on (default is off),
+                   remote computer file names with all letters in  upper  case
+                   are  written in the local directory with the letters mapped
+                   to lower case.
+
+       cd remote-directory
+                   Change the working  directory  on  the  remote  machine  to
+                   remote-directory.
+
+       cdup        Change  the  remote machine working directory to the parent
+                   of the current remote machine working directory.
+
+       chmod mode remote-file
+                   Change the permission modes of the file remote-file on  the
+                   remote system to mode.
+        close       Terminate  the  FTP session with the remote server, and re‐
+                   turn to the command interpreter.  Any  defined  macros  are
+                   erased.
+
+       cr          Toggle carriage return stripping during ascii type file re‐
+                   trieval.  Records are denoted by a carriage return/linefeed
+                   sequence  during  ascii  type file transfer.  When cr is on
+                   (the default), carriage returns are stripped from this  se‐
+                   quence  to conform with the Unix single linefeed record de‐
+                   limiter.  Records on non-Unix remote  systems  may  contain
+                   single  linefeeds;  when  an  ascii  type transfer is made,
+                   these linefeeds may be distinguished from a  record  delim‐
+                   iter only when cr is off.
+
+       debug [debug-value]
+                   Toggle debugging mode.  If an optional debug-value is spec‐
+                   ified  it  is used to set the debugging level.  When debug‐
+                   ging is on, tnftp prints each command sent  to  the  remote
+                   machine, preceded by the string ‘-->’.
+       delete remote-file
+                   Delete the file remote-file on the remote machine.
+
+       dir [remote-path [local-file]]
+                   Print  a  listing of the contents of a directory on the re‐
+                   mote machine.  The listing  includes  any  system-dependent
+                   information  that  the server chooses to include; for exam‐
+                   ple, most Unix systems will produce output from the command
+                   ‘ls -l’.  If remote-path is left unspecified,  the  current
+                   working directory is used.  If interactive prompting is on,
+                   tnftp will prompt the user to verify that the last argument
+                   is  indeed  the target local file for receiving dir output.
+                   If no local file is specified, or if local-file is ‘-’, the
+                   output is sent to the terminal.
+
+       disconnect  A synonym for close.
+
+       edit        Toggle command line editing, and context sensitive  command
+                   and  file completion.  This is automatically enabled if in‐
+                   put is from a terminal, and disabled otherwise.
+
+       epsv, epsv4, epsv6
+                  Toggle the use of the extended EPSV and  EPRT  commands  on
+                   all IP, IPv4, and IPv6 connections respectively.  First try
+                   EPSV/EPRT, and then PASV/PORT.  This is enabled by default.
+                   If  an extended command fails then this option will be tem‐
+                   porarily disabled for the duration of the  current  connec‐
+                   tion, or until epsv, epsv4, or epsv6 is executed again.
+
+       exit        A synonym for bye.
+
+       features    Display what features the remote server supports (using the
+                   FEAT command).
+
+       fget localfile
+                   Retrieve  the files listed in localfile, which has one line
+                   per filename.
+
+       form format
+                   Set the file transfer form to  format.   The  default  (and
+                   only supported) format is ‘non-print’.
+
+       ftp host [port]
+                   A synonym for open.
+
+       gate [host [port]]
+                   Toggle gate-ftp mode, which used to connect through the TIS
+                   FWTK  and Gauntlet FTP proxies.  This will not be permitted
+                   if the gate-ftp server hasn't been set  (either  explicitly
+                   by  the  user, or from the FTPSERVER environment variable).
+                   If host is given, then gate-ftp mode will be  enabled,  and
+                   the  gate-ftp  server will be set to host.  If port is also
+                   given, that will be used as the port to connect to  on  the
+                   gate-ftp server.
+
+       get remote-file [local-file]
+                   Retrieve the remote-file and store it on the local machine.
+                   If  the  local  file name is not specified, it is given the
+                   same name it has on the remote machine, subject  to  alter‐
+                   ation  by the current case, ntrans, and nmap settings.  The
+                   current settings for type, form, mode,  and  structure  are
+                   used while transferring the file.
+       
+       get remote-file [local-file]
+                   Retrieve the remote-file and store it on the local machine.
+                   If  the  local  file name is not specified, it is given the
+                   same name it has on the remote machine, subject  to  alter‐
+                   ation  by the current case, ntrans, and nmap settings.  The
+                   current settings for type, form, mode,  and  structure  are
+                   used while transferring the file.
+
+       glob        Toggle  filename  expansion  for  mdelete,  mget, mput, and
+                   mreget.  If globbing is turned off with glob, the file name
+                   arguments are taken literally and not  expanded.   Globbing
+                   for  mput  is  done  as  in csh(1).  For mdelete, mget, and
+                   mreget, each remote file name is expanded separately on the
+                   remote machine and the lists are not merged.  Expansion  of
+                   a  directory  name is likely to be different from expansion
+                   of the name of an ordinary file: the exact  result  depends
+                   on  the foreign operating system and FTP server, and can be
+                   previewed by doing ‘mls remote-files -’.  Note: mget,  mput
+                   and  mreget are not meant to transfer entire directory sub‐
+                   trees of files.  That can be done by transferring a  tar(1)
+                   archive of the subtree (in binary mode).
+       hash [size]
+                   Toggle  hash-sign (‘#’) printing for each data block trans‐
+                   ferred.  The size of a data block defaults to  1024  bytes.
+                   This  can be changed by specifying size in bytes.  Enabling
+                   hash disables progress.
+
+       help [command]
+                   Print an informative message about the meaning of  command.
+                   If  no  argument is given, tnftp prints a list of the known
+                   commands.
+
+       idle [seconds]
+                   Set the inactivity timer on the remote  server  to  seconds
+                   seconds.   If  seconds  is  omitted, the current inactivity
+                   timer is printed.
+
+       image       A synonym for binary.
+
+       lcd [directory]
+                   Change the working directory on the local machine.   If  no
+                   directory is specified, the user's home directory is used.
+
+       less file   A synonym for page.
+
+
+7) finger : The finger displays information about the system users.
+
+       Options are:
+
+       -s    Finger  displays  the user's login name, real name, terminal name
+             and write status (as a ``*'' after the  terminal  name  if  write
+             permission is denied), idle time, login time, office location and
+             office phone number.
+
+             Login  time is displayed as month, day, hours and minutes, unless
+             more than six months ago, in which case  the  year  is  displayed
+             rather than the hours and minutes.
+
+             Unknown  devices  as well as nonexistent idle and login times are
+             displayed as single asterisks.
+
+       -l    Produces a multi-line format displaying all  of  the  information
+             described for the -s option as well as the user's home directory,
+             home  phone number, login shell, mail status, and the contents of
+             the files “.plan”, “.project”, “.pgpkey” and “.forward” from  the
+             
+
+user's home directory.
+
+             Phone numbers specified as eleven digits are printed as ``+N-NNN-
+             NNN-NNNN''.  Numbers specified as ten or seven digits are printed
+             as  the  appropriate subset of that string.  Numbers specified as
+             five digits are printed as  ``xN-NNNN''.   Numbers  specified  as
+             four digits are printed as ``xNNNN''.
+
+             If  write  permission is denied to the device, the phrase ``(mes‐
+             sages off)'' is appended to the line containing the device  name.
+             One  entry per user is displayed with the -l option; if a user is
+             logged on multiple times, terminal information is  repeated  once
+             per login.
+
+             Mail  status is shown as ``No Mail.'' if there is no mail at all,
+             ``Mail last read DDD MMM ## HH:MM YYYY (TZ)'' if the  person  has
+             looked  at  their  mailbox since new mail arriving, or ``New mail
+             received ...'', ``  Unread since ...'' if they have new mail.
+
+       -p    Prevents the -l option of finger from displaying the contents  of
+             the “.plan”, “.project” and “.pgpkey” files.
+
+
+8) traceroute : Print the route packets trace to network host.
+
+
+9) who is : Print information about users who are currently logged in.
+
+       -a, --all
+              same as -b -d --login -p -r -t -T -u
+
+       -b, --boot
+              time of last system boot
+
+       -d, --dead
+              print dead processes
+
+       -H, --heading
+              print line of column headings
+
+       -l, --login
+              print system login processes
+
+       --lookup
+              attempt to canonicalize hostnames via DNS
+        -m     only hostname and user associated with stdin
+
+       -p, --process
+              print active processes spawned by init
+
+       -q, --count
+              all login names and number of users logged on
+
+       -r, --runlevel
+              print current runlevel
+
+       -s, --short
+              print only name, line, and time (default)
+
+       -t, --time
+              print last system clock change
+
+       -T, -w, --mesg
+              add user's message status as +, - or ?    
+              
+-T, -w, --mesg
+              add user's message status as +, - or ?
+
+       -u, --users
+              list users logged in
+
+       --message
+              same as -T
+
+       --writable
+              same as -T
+
+       --help display this help and exit
+
+       --version
+              output version information and exit
+
+       If  FILE is not specified, use /var/run/utmp.  /var/log/wtmp as FILE is
+       common.  If ARG1 ARG2 given, -m presumed: 'am i'  or  'mom  likes'  are
+       usual
+
+

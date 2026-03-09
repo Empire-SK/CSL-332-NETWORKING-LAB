@@ -35,6 +35,8 @@ int main()
     printf("enter second number :");
     fgets(b, 20, stdin);
     k = send(sock_desc, b, strlen(b), 0);
+    if (k == -1)
+        printf("error in sending");
 
     close(sock_desc);
     return 0;

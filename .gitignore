@@ -1,0 +1,29 @@
+# C build artifacts
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dll
+*.dylib
+*.exe
+*.out
+
+# Debug and profiling files
+*.dSYM/
+*.stackdump
+core
+
+# Common build directories
+build/
+dist/
+bin/
+Debug/
+Release/
+
+# Editor and OS files
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db

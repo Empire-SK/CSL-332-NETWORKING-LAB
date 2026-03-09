@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <winsock2.h>
-#include <ws2tcpip.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <unistd.h>
 int main()
 {
     char a[100], b[100], sum1[100];
@@ -38,8 +40,8 @@ int main()
         printf("ERROR in recieving");
     a[k] = '\0';
     m = atoi(a);
-    k = recv(temp_sock_desc, b, 100, 0);
 
+    k = recv(temp_sock_desc, b, 100, 0);
     if (k == -1)
         printf("ERROR in recieving");
     b[k] = '\0';
@@ -48,7 +50,7 @@ int main()
     sum = m + n;
     sprintf(sum1, "%d", sum);
     printf("SUM=%s\n", sum1);
-
-    closesocket(temp_sock_desc);
+    
+    close(temp_sock_desc);
     return 0;
 }

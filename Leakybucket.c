@@ -3,7 +3,6 @@
 int main() {
     int bucket_size, output_rate, n, i;
     int packet_size;
-
     int bucket = 0;
 
     printf("Enter bucket size: ");
@@ -21,20 +20,25 @@ int main() {
 
         if(bucket + packet_size <= bucket_size) {
             bucket += packet_size;
-            printf("Packet accepted. Bucket content = %d\n", bucket);
-        } 
-        else {
+            printf("Accepted %d units\n", packet_size);
+        } else {
             printf("Packet dropped (bucket overflow)\n");
         }
 
+        // Show bucket state BEFORE leaking
+        printf("bucket before leak: %d/%d\n", bucket, bucket_size);
+
+        // Leak / transmit at output rate
+        printf("outgoing %d units\n", output_rate);
+
         if(bucket >= output_rate) {
             bucket -= output_rate;
-        } 
-        else {
+        } else {
             bucket = 0;
         }
 
-        printf("After leaking, bucket content = %d\n", bucket);
+        // Show bucket state AFTER leaking
+        printf("bucket after leak :%d/%d\n", bucket, bucket_size);
     }
 
     return 0;

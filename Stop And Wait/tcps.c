@@ -17,7 +17,6 @@ int main() {
     sock_desc = socket(AF_INET, SOCK_STREAM, 0);
     if (sock_desc < 0) {
         printf("error in socket creation.\n");
-        return 1;
     }
 
     server.sin_family = AF_INET;
@@ -27,7 +26,6 @@ int main() {
     k = bind(sock_desc, (struct sockaddr*)&server, sizeof(server));
     if (k < 0) {
         printf("error in binding.\n");
-        return 1;
     }
 
     // 2. listen() — marks socket as passive, waiting for connections
@@ -39,7 +37,6 @@ int main() {
     conn_fd = accept(sock_desc, (struct sockaddr*)&client, &len);
     if (conn_fd < 0) {
         printf("error in accepting connection.\n");
-        return 1;
     }
     printf("client connected.\n");
 

@@ -18,9 +18,9 @@ int main() {
         }
     }
 
-    for(k = 0; k < n; k++) {
         for(i = 0; i < n; i++) {
             for(j = 0; j < n; j++) {
+                  for(k = 0; k < n; k++) {
 
                 if(dist[i][j] > dist[i][k] + dist[k][j]) {
                     dist[i][j] = dist[i][k] + dist[k][j];
